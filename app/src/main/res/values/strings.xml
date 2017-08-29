@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TitleGradientDemo</string>
+    <string name="activity_title_common">渐变色状态栏</string>
+
+    <string name="activity_title_invasion">内容侵入状态栏渐变</string>
+
+    <string name="activity_title_dark">状态栏深色字体</string>
+</resources>
