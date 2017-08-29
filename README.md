@@ -1,17 +1,17 @@
 # TitleGradientDemo
 android 标题栏随着listview，scroolView，recycleView滑动，透明度随之变化。
 # ListView关键代码
-        lv_listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+      lv_listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-              public void onScrollStateChanged(AbsListView view, int scrollState) {
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-             }
+            }
             // 最重要的方法，标题栏的透明度变化在这个方法实现
             @Override
             public void onScroll(AbsListView listView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                 // 判断当前最上面显示的是不是头布局，所以头布局的位置是0，即第一个（如果有刷新控件就位置加1）
-                  if (firstVisibleItem == 0) {
-                      // 获取头布局
+     // 判断当前最上面显示的是不是头布局，所以头布局的位置是0，即第一个（如果有刷新控件就位置加1）
+                if (firstVisibleItem == 0) {
+                    // 获取头布局
                     View view = lv_listView.getChildAt(0);
                     if (view != null) {
                         // 获取头布局现在的最上部的位置的相反数
@@ -25,36 +25,36 @@ android 标题栏随着listview，scroolView，recycleView滑动，透明度随�
                             ll_titlebar.getBackground().setAlpha((int) (f * 255));
                             // 通知标题栏刷新显示
                             ll_titlebar.invalidate();
-                          }
-                      }
-                  } else if (firstVisibleItem > 0) {
+                        }
+                    }
+                } else if (firstVisibleItem > 0) {
                     ll_titlebar.getBackground().setAlpha(255);
-                  } else {
+                } else {
                     ll_titlebar.getBackground().setAlpha(0);
-                  }
-              }  
+                }
+            }
 
-            });
+        });
 # Scroll关键代码
     /**
      * 出现渐变效果
      */
-            public void titleAnima(int y)
-           {
-                 int height = banner_layout.getMeasuredHeight()/2;
-                 if (y >= 0 && y <= height)
-           {
-                float scrollPercent = (float) y / height;
-                ll_titlebar.getBackground().setAlpha((int) (255 * scrollPercent));
-                 tv_title.setTextColor(Color.argb((int) scrollPercent * 255, 255, 255, 255));
-            }
-           else
-           {
-                 //这两句代码不写title可能消失或随机出现，titleBar可能透明度随机。
-                 ll_titlebar.getBackground().setAlpha((int) (255 * 1));
-                 tv_title.setTextColor(Color.argb((int) 255, 255, 255, 255));
-          }
-          }
+     public void titleAnima(int y)
+      {
+         int height = banner_layout.getMeasuredHeight()/2;
+         if (y >= 0 && y <= height)
+        {
+           float scrollPercent = (float) y / height;
+           ll_titlebar.getBackground().setAlpha((int) (255 * scrollPercent));
+           tv_title.setTextColor(Color.argb((int) scrollPercent * 255, 255, 255, 255));
+         }
+         else
+        {
+            //这两句代码不写title可能消失或随机出现，titleBar可能透明度随机。
+            ll_titlebar.getBackground().setAlpha((int) (255 * 1));
+            tv_title.setTextColor(Color.argb((int) 255, 255, 255, 255));
+         }
+     }
  # RecycleView关键代码
     recycler_view.setOnScrollListener(new RecyclerView.OnScrollListener() {
              @Override
